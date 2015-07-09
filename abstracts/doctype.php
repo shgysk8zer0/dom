@@ -3,7 +3,7 @@
  * @author Chris Zuber <shgysk8zer0@gmail.com>
  * @package shgysk8zer0\PHP_DOM
  * @subpackage Abstracts
- * @version 1.0.0
+ * @version 0.0.1
  * @copyright 2015, Chris Zuber
  * @license https://www.gnu.org/licenses/gpl-2.0.html GNU General Public License, version 2 (GPL-2.0)
  * This library is free software; you can redistribute it and/or
