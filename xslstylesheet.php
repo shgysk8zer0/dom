@@ -26,14 +26,10 @@ namespace shgysk8zer0\PHP_DOM;
 /**
  * Class for creating XSL stylesheets/templates
  */
-class XSLStylesheet extends \DOMDocument
+class XSLStylesheet extends Abstracts\XMLNS
 {
 	const VERSION      = '1.0';
 	const ENCODING     = 'UTF-8';
-	const XSL_URI      = 'http://www.w3.org/1999/XSL/Transform';
-	const XMLNS        = 'http://www.w3.org/2000/xmlns/';
-	const XSLNS        = 'xmlns:xsl';
-	const TAGNAME      = 'xsl:stylesheet';
 	const CONTENT_TYPE = 'application/xslt+xml';
 
 	use Traits\XMLString;

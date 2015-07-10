@@ -23,6 +23,7 @@
  * Boston, MA  02110-1301, USA.
  */
 namespace shgysk8zer0\PHP_DOM\Traits;
+use \shgysk8zer0\PHP_DOM\Abstracts\XMLNS as NS;
 
 /**
  * Trait for Creating XSL templates and setting them on XML Documents
@@ -50,11 +51,11 @@ trait XSL
 	 * @param  string $version The version (e.g. "1.0") attribute to set
 	 * @return \DOMElement     The created element with namespace & attributes set
 	 */
-	public function createXSLStylesheet($version = self::VERSION)
+	public function createXSLStylesheet($version = '1.0')
 	{
-		$xsl = $this->createElementNS(self::XSL_URI, self::TAGNAME);
+		$xsl = $this->createElementNS(NS::XSL_URI, NS::STYLESHEET_TAGNAME);
 		$xsl->setAttribute('version', $version);
-		$xsl->setAttributeNS(self::XMLNS, self::XSLNS, self::XSL_URI);
+		$xsl->setAttributeNS(NS::XMLNS, NS::XSLNS, NS::XSL_URI);
 		return $xsl;
 	}
 

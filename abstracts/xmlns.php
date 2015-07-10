@@ -27,7 +27,7 @@ namespace shgysk8zer0\PHP_DOM\Abstracts;
 /**
  * A collection of namespace URIs as well as tag names
  */
-abstract class XMLNS
+abstract class XMLNS extends \DOMDocument
 {
 	const XSL_URI            = 'http://www.w3.org/1999/XSL/Transform';
 	const XMLNS              = 'http://www.w3.org/2000/xmlns/';
