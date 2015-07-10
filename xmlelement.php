@@ -1,7 +1,7 @@
 <?php
 /**
  * @author Chris Zuber <shgysk8zer0@gmail.com>
- * @package shgysk8zer0\PHP_DOM
+ * @package shgysk8zer0\DOM
  * @version 0.0.1
  * @copyright 2015, Chris Zuber
  * @license https://www.gnu.org/licenses/gpl-2.0.html GNU General Public License, version 2 (GPL-2.0)
@@ -20,7 +20,7 @@
  * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
  * Boston, MA  02110-1301, USA.
  */
-namespace shgysk8zer0\PHP_DOM;
+namespace shgysk8zer0\DOM;
 use \shgysk8zer0\Core_API as API;
 
 class XMLElement extends \DOMElement implements API\Interfaces\Magic_Methods, API\Interfaces\String

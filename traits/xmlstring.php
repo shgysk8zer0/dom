@@ -1,7 +1,7 @@
 <?php
 /**
  * @author Chris Zuber <shgysk8zer0@gmail.com>
- * @package shgysk8zer0\PHP_DOM
+ * @package shgysk8zer0\DOM
  * @subpackage Traits
  * @version 0.0.1
  * @since 0.0.1
@@ -22,7 +22,7 @@
  * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
  * Boston, MA  02110-1301, USA.
  */
-namespace shgysk8zer0\PHP_DOM\Traits;
+namespace shgysk8zer0\DOM\Traits;
 
 /**
  * Creates __toString methods for both DOMDocument and DOMElement with XML output

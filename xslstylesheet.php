@@ -1,7 +1,7 @@
 <?php
 /**
  * @author Chris Zuber <shgysk8zer0@gmail.com>
- * @package shgysk8zer0\PHP_DOM
+ * @package shgysk8zer0\DOM
  * @version 0.0.1
  * @since 0.0.1
  * @copyright 2015, Chris Zuber
@@ -21,7 +21,7 @@
  * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
  * Boston, MA  02110-1301, USA.
  */
-namespace shgysk8zer0\PHP_DOM;
+namespace shgysk8zer0\DOM;
 
 /**
  * Class for creating XSL stylesheets/templates

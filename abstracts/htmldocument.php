@@ -1,7 +1,7 @@
 <?php
 /**
  * @author Chris Zuber <shgysk8zer0@gmail.com>
- * @package shgysk8zer0\PHP_DOM
+ * @package shgysk8zer0\DOM
  * @subpackage Abstracts
  * @version 0.0.1
  * @since 0.0.1
@@ -22,8 +22,8 @@
  * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
  * Boston, MA  02110-1301, USA.
  */
-namespace shgysk8zer0\PHP_DOM\Abstracts;
-use \shgysk8zer0\PHP_DOM as DOM;
+namespace shgysk8zer0\DOM\Abstracts;
+use \shgysk8zer0\DOM as DOM;
 use \shgysk8zer0\Core_API as API;
 
 /**
