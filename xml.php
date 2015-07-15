@@ -23,7 +23,7 @@
  */
 namespace shgysk8zer0\DOM;
 
-class XML extends \DOMDocument
+class XML extends \DOMDocument implements Interfaces\DOMDocument, Interfaces\XMLDocument
 {
 	use Traits\XMLString;
 	use Traits\XPath;

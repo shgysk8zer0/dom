@@ -27,10 +27,15 @@ use \shgysk8zer0\Core_API as API;
 /**
  *
  */
-class HTMLElement extends \DOMElement implements API\Interfaces\Magic_Methods, API\Interfaces\String
+class HTMLElement extends \DOMElement
+implements API\Interfaces\Magic_Methods, API\Interfaces\String,
+Interfaces\DOMDocument, Interfaces\HTMLDocument
 {
+	use Traits\DOMDocument;
+	use Traits\HTMLDocument;
 	use Traits\Attributes;
 	use Traits\HTMLString;
+	use Traits\HTMLParser;
 	use Traits\XPath;
-	use API\Traits\MAgic\Call_Setter;
+	use API\Traits\Magic\Call_Setter;
 }

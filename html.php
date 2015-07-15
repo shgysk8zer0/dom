@@ -27,7 +27,7 @@ use \shgysk8zer0\Core_API as API;
 /**
  *
  */
-class HTML extends Abstracts\HTMLDocument
+class HTML extends Abstracts\HTMLDocument implements Interfaces\DOMDocument, Interfaces\HTMLDocument
 {
 	public $head;
 	public $body;

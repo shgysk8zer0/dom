@@ -25,6 +25,8 @@ use \shgysk8zer0\Core_API as API;
 
 class XMLElement extends \DOMElement implements API\Interfaces\Magic_Methods, API\Interfaces\String
 {
+	use Traits\DOMDocument;
+	use Traits\XMLDocument;
 	use Traits\Attributes;
 	use Traits\XPath;
 	use Traits\XMLString;
