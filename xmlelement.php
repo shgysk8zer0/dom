@@ -28,6 +28,7 @@ class XMLElement extends \DOMElement implements API\Interfaces\Magic_Methods, AP
 	use Traits\DOMDocument;
 	use Traits\XMLDocument;
 	use Traits\Attributes;
+	use Traits\DOMElement;
 	use Traits\XPath;
 	use Traits\XMLString;
 	use API\Traits\Magic\Call_Setter;

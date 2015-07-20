@@ -2,6 +2,7 @@
 /**
  * @author Chris Zuber <shgysk8zer0@gmail.com>
  * @package shgysk8zer0\DOM
+ * @subpackage Traits
  * @version 0.0.1
  * @since 0.0.1
  * @copyright 2015, Chris Zuber
@@ -21,27 +22,26 @@
  * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
  * Boston, MA  02110-1301, USA.
  */
-namespace shgysk8zer0\DOM;
-use \shgysk8zer0\Core_API as API;
+namespace shgysk8zer0\DOM\Traits;
 
 /**
- * Class extending DOMElement and making use of several traits
+ * A set of methods particularly useful to \DOMElement classes
  */
-class HTMLElement extends \DOMElement
-implements API\Interfaces\Magic_Methods, API\Interfaces\String,
-Interfaces\DOMDocument, Interfaces\HTMLDocument
+trait DOMElement
 {
-	use Traits\DOMDocument;
-	use Traits\HTMLDocument;
-	use Traits\Attributes;
-	use Traits\HTMLString;
-	use Traits\HTMLParser;
-	use Traits\DOMElement;
-	use Traits\XPath;
-	use API\Traits\Magic\Call_Setter;
-
-	public function __invoke($tag, $content = null, array $attributes = array())
+	/**
+	 * Short-hand method for `$element->appendChild($dom->createElement()...)`
+	 * Also sets attriutes from an array after appending
+	 *
+	 * @param  string $tag        The name for the new element
+	 * @param  string $content    The text content for the new element
+	 * @param  array  $attributes An optional array of attributes to set
+	 * @return \DOMElement        The newly created and appended node
+	 */
+	final public function append($tag, $content = null, array $attributes = array())
 	{
-		return $this->append($tag, $content, $attributes);
+		$node = $this->appendChild($this->createElement($tag, $content));
+		array_map([$node, 'setAttribute'], array_keys($attributes), array_values($attributes));
+		return $node;
 	}
 }
