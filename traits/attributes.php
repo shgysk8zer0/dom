@@ -40,6 +40,7 @@ trait Attributes
 	 */
 	final public function __set($name, $value)
 	{
+		$this->_convertProp($name);
 		$this->setAttribute($name, $value);
 	}
 
@@ -53,6 +54,7 @@ trait Attributes
 	 */
 	final public function __get($name)
 	{
+		$this->_convertProp($name);
 		return $this->getAttribute($name);
 	}
 
@@ -66,6 +68,7 @@ trait Attributes
 	 */
 	final public function __isset($name)
 	{
+		$this->_convertProp($name);
 		return $this->hasAttribute($name);
 	}
 
@@ -79,6 +82,18 @@ trait Attributes
 	 */
 	final public function __unset($name)
 	{
+		$this->_convertProp($name);
 		$this->removeAttribute($name);
+	}
+
+	/**
+	 * Provides a single method to make necessary conversions to property names
+	 * 
+	 * @param  string $name The name of an attribute, as used by magic methods
+	 * @return void         Updates $name by reference
+	 */
+	final protected function _convertProp(&$name)
+	{
+		$name = $name = str_replace('_', '-', $name);
 	}
 }
