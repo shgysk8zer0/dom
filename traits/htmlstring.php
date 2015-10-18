@@ -40,7 +40,7 @@ trait HTMLString
 		if ($this instanceof \DOMDocument) {
 			return $this->saveHTML();
 		} else {
-			return $this->ownerDocumennt->saveHTML($this);
+			return $this->ownerDocument->saveHTML($this);
 		}
 	}
 }
