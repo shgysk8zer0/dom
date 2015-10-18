@@ -24,6 +24,10 @@
 namespace shgysk8zer0\DOM;
 
 use \shgysk8zer0\Core_API as API;
+
+/**
+ * Class extending \DOMDocument for creating SVGs.
+ */
 class SVG extends \DOMDocument implements API\Interfaces\Magic_Methods, API\Interfaces\String
 {
 	use API\Traits\Magic\Call_Setter;
