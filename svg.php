@@ -28,7 +28,7 @@ class SVG extends \DOMDocument implements API\Interfaces\Magic_Methods, API\Inte
 {
 	use API\Traits\Magic\Call_Setter;
 	use Traits\DocumentElementAttributes;
-	use Traits\DocumentElementString;
+	use Traits\DocumentElementXMLString;
 
 	const XMLNS = 'http://www.w3.org/2000/svg';
 	const VERSION = 1.1;

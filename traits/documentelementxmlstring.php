@@ -28,7 +28,7 @@ namespace shgysk8zer0\DOM\Traits;
 /**
  * Trait for DOMDocument to return the contents of documentElement as a string
  */
-trait DocumentElementString
+trait DocumentElementXMLString
 {
 	/**
 	 * Returns contents of documentElement as an XML string
