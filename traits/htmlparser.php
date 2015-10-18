@@ -39,12 +39,12 @@ trait HTMLParser
 	{
 		$dom = new \DOMDocument('1.0', 'UTF-8');
 		$dom->loadHTML($html, $options);
-		return $dom->documentElement->childNodes;
+		return $dom->documentElement->getElementsByTagName('body')->item(0)->childNodes;
 	}
 
 	/**
 	 * Parses HTML and imports the nodes
-	 * 
+	 *
 	 * @param  string $html HTML to import and append
 	 * @return self
 	 */
