@@ -40,8 +40,12 @@ trait DOMElement
 	 */
 	final public function append($tag, $content = null, array $attributes = array())
 	{
-		$node = $this->appendChild($this->createElement($tag, $content));
-		array_map([$node, 'setAttribute'], array_keys($attributes), array_values($attributes));
-		return $node;
+		if ($this instanceof \DOMDocument) {
+			$this->documentElement->append($tag, $content, $attributes);
+		} elseif ($this instanceof \DOMElement) {
+			$node = $this->appendChild($this->createElement($tag, $content));
+			array_map([$node, 'setAttribute'], array_keys($attributes), array_values($attributes));
+			return $node;
+		}
 	}
 }
