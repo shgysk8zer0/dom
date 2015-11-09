@@ -35,6 +35,18 @@ final class MathML extends \DOMDocument implements Interfaces\Math, API\Interfac
 	const CHARSET      = 'UTF-8';
 	const VERSION      = '1.0';
 
+	const INFINITY     = '&#x221E;';
+	const INTEGRAL     = '&#x222B;';
+	const PI           = '&#x03C0;';
+	const TAU          = '&#x03C4;';
+	const OMEGA        = '&#x03A9;';
+	const SIGMA        = '&#x03A3;';
+	const THETA        = '&#x0398;';
+	const DELTA        = '&#x0394;';
+	const PHI          = '&#x03A6;';
+	const LAMBDA       = '&#x03BB;';
+	const MU           = '&#x03BC;';
+
 	use Traits\XMLString;
 	use Traits\DOMElement;
 	use Traits\Math;
