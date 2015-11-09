@@ -54,6 +54,16 @@ interface Math
 	public function number($value, array $attributes = array());
 
 	/**
+	 * [action description]
+	 * @param  [type] $type       [description]
+	 * @param  array  $items      [description]
+	 * @param  array  $attributes [description]
+	 * @return [type]             [description]
+	 * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/maction
+	 */
+	public function action($type, array $items, array $attributes = array());
+
+	/**
 	 * [root description]
 	 * @param  [type] $num        [description]
 	 * @param  [type] $pow        [description]
@@ -81,7 +91,12 @@ interface Math
 	 * @return [type]              [description]
 	 * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/mfrac
 	 */
-	public function frac($numerator, $denominator, $bevelled = false, array $attributes = array());
+	public function frac(
+		\DOMElement $numerator,
+		\DOMElement $denominator,
+		$bevelled = false,
+		array $attributes = array()
+	);
 
 	/**
 	 * [sub description]
@@ -104,6 +119,51 @@ interface Math
 	public function sup($base, $superscript, array $attributes = array());
 
 	/**
+	 * [pow description]
+	 * @param  [type] $base        [description]
+	 * @param  [type] $superscript [description]
+	 * @param  array  $attributes  [description]
+	 * @return [type]              [description]
+	 */
+	public function pow($base, $superscript, array $attributes = array());
+
+	/**
+	 * [under description]
+	 * @param  DOMElement $base        [description]
+	 * @param  DOMElement $underscript [description]
+	 * @param  array      $attributes  [description]
+	 * @return [type]                  [description]
+	 * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/munder
+	 */
+	public function under(\DOMElement $base, \DOMElement $underscript, array $attributes = array());
+
+	/**
+	 * [over description]
+	 * @param  DOMElement $base       [description]
+	 * @param  DOMElement $overscript [description]
+	 * @param  array      $attributes [description]
+	 * @return [type]                 [description]
+	 * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/mover
+	 */
+	public function over(\DOMElement $base, \DOMElement $overscript, array $attributes = array());
+
+	/**
+	 * [overUnder description]
+	 * @param  DOMElement $base        [description]
+	 * @param  DOMElement $underscript [description]
+	 * @param  DOMElement $overscript  [description]
+	 * @param  array      $attributes  [description]
+	 * @return [type]                  [description]
+	 * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/munderover
+	 */
+	public function overUnder(
+		\DOMElement $base,
+		\DOMElement $underscript,
+		\DOMElement $overscript,
+		array $attributes = array()
+	);
+
+	/**
 	 * [fenced description]
 	 * @param  array  $items      [description]
 	 * @param  array  $attributes [description]
@@ -111,6 +171,25 @@ interface Math
 	 * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/mfenced
 	 */
 	public function fenced(array $items, array $attributes = array());
+
+	/**
+	 * [enclose description]
+	 * @param  string $notation   [description]
+	 * @param  array  $items      [description]
+	 * @param  array  $attributes [description]
+	 * @return [type]             [description]
+	 * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/menclose
+	 */
+	public function enclose($notation = 'longdiv', array $items, array $attributes = array());
+
+	/**
+	 * [divide description]
+	 * @param  DOMElement $num        [description]
+	 * @param  DOMElement $by         [description]
+	 * @param  array      $attributes [description]
+	 * @return [type]                 [description]
+	 */
+	public function divide(\DOMElement $num, \DOMElement $by, array $attributes = array());
 
 	/**
 	 * [text description]
@@ -139,4 +218,78 @@ interface Math
 	 * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/mglyph
 	 */
 	public function glyph($src, $alt = '', array $attributes = array());
+
+	/**
+	 * [table description]
+	 * @param  array  $atributes [description]
+	 * @return [type]            [description]
+	 * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/mtable
+	 */
+	public function table(array $attributes = array());
+
+	/**
+	 * [tableRow description]
+	 * @param  array  $items      [description]
+	 * @param  array  $attributes [description]
+	 * @return [type]             [description]
+	 * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/mtr
+	 */
+	public function tableRow(array $items, array $attributes = array());
+
+	/**
+	 * [tableCell description]
+	 * @param  array  $items      [description]
+	 * @param  array  $attributes [description]
+	 * @return [type]             [description]
+	 * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/mtd
+	 */
+	public function tableCell(array $items, array $attributes = array());
+
+	/**
+	 * [row description]
+	 * @param  array  $items      [description]
+	 * @param  array  $attributes [description]
+	 * @return [type]             [description]
+	 * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/mrow
+	 */
+	public function row(array $items, array $attributes = array());
+
+	/**
+	 * [integral description]
+	 * @param  mixed   $from [description]
+	 * @param  [type]  $to   [description]
+	 * @return [type]        [description]
+	 */
+	public function integral($from = 0, $to = \shgysk8zer0\DOM\MathML::INFINITY);
+
+	/**
+	 * [naturalLog description]
+	 * @param  [type] $num [description]
+	 * @return [type]      [description]
+	 */
+	public function naturalLog($num);
+
+	/**
+	 * [toggle description]
+	 * @param  array  $items      [description]
+	 * @param  array  $attributes [description]
+	 * @return [type]             [description]
+	 */
+	public function toggle(array $items, array $attributes = array());
+
+	/**
+	 * [statusLine description]
+	 * @param  [type] $message    [description]
+	 * @param  array  $attributes [description]
+	 * @return [type]             [description]
+	 */
+	public function statusLine($message, array $attributes = array());
+
+	/**
+	 * [toolTip description]
+	 * @param  [type] $message    [description]
+	 * @param  array  $attributes [description]
+	 * @return [type]             [description]
+	 */
+	public function toolTip($message, array $attributes = array());
 }

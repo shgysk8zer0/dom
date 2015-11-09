@@ -72,6 +72,23 @@ trait Math
 	}
 
 	/**
+	 * [action description]
+	 * @param  [type] $type       [description]
+	 * @param  array  $items      [description]
+	 * @param  array  $attributes [description]
+	 * @return [type]             [description]
+	 * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/maction
+	 */
+	final public function action($type, array $items, array $attributes = array())
+	{
+		$attributes['actiontype'] = $type;
+		$maction = $this->createElement('maction');
+		array_map([$maction, 'appendChild'], $items);
+		array_map([$maction, 'setAttribute'], array_keys($attributes), array_values($attributes));
+		return $maction;
+	}
+
+	/**
 	 * [root description]
 	 * @param  [type] $num        [description]
 	 * @param  [type] $pow        [description]
@@ -112,15 +129,20 @@ trait Math
 	 * @return [type]              [description]
 	 * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/mfrac
 	 */
-	final public function frac($numerator, $denominator, $bevelled = false, array $attributes = array())
+	final public function frac(
+		\DOMElement $numerator,
+		\DOMElement $denominator,
+		$bevelled = false,
+		array $attributes = array()
+	)
 	{
 		$mfrac = $this->createElement('mfrac');
 		if ($bevelled) {
 			$attributes['bevelled'] = 'true';
 		}
 		array_map([$mfrac, 'setAttribute'], array_keys($attributes), array_values($attributes));
-		$mfrac->appendChild($this->createElement('mi', $numerator));
-		$mfrac->appendChild($this->createElement('mi', $denominator));
+		$mfrac->appendChild($numerator);
+		$mfrac->appendChild($denominator);
 		return $mfrac;
 	}
 
@@ -159,6 +181,76 @@ trait Math
 	}
 
 	/**
+	 * [pow description]
+	 * @param  [type] $base        [description]
+	 * @param  [type] $superscript [description]
+	 * @param  array  $attributes  [description]
+	 * @return [type]              [description]
+	 */
+	final public function pow($base, $superscript, array $attributes = array())
+	{
+		return $this->sup($base, $superscript, $attributes);
+	}
+
+	/**
+	 * [under description]
+	 * @param  DOMElement $base        [description]
+	 * @param  DOMElement $underscript [description]
+	 * @param  array      $attributes  [description]
+	 * @return [type]                  [description]
+	 * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/munder
+	 */
+	final public function under(\DOMElement $base, \DOMElement $underscript, array $attributes = array())
+	{
+		$munder = $this->createElement('munder');
+		$munder->appendChild($base);
+		$munder->appendChild($underscript);
+		array_map([$munder, 'setAttribute'], array_keys($attributes), array_values($attributes));
+		return $munder;
+	}
+
+	/**
+	 * [over description]
+	 * @param  DOMElement $base       [description]
+	 * @param  DOMElement $overscript [description]
+	 * @param  array      $attributes [description]
+	 * @return [type]                 [description]
+	 * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/mover
+	 */
+	final public function over(\DOMElement $base, \DOMElement $overscript, array $attributes = array())
+	{
+		$mover = $this->createElement('mover');
+		$mover->appendChild($base);
+		$mover->appendChild($overscript);
+		array_map([$mover, 'setAttribute'], array_keys($attributes), array_values($attributes));
+		return $mover;
+	}
+
+	/**
+	 * [overUnder description]
+	 * @param  DOMElement $base        [description]
+	 * @param  DOMElement $underscript [description]
+	 * @param  DOMElement $overscript  [description]
+	 * @param  array      $attributes  [description]
+	 * @return [type]                  [description]
+	 * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/munderover
+	 */
+	final public function overUnder(
+		\DOMElement $base,
+		\DOMElement $underscript,
+		\DOMElement $overscript,
+		array $attributes = array()
+	)
+	{
+		$munderover = $this->createElement('munderover');
+		$munderover->appendChild($base);
+		$munderover->appendChild($underscript);
+		$munderover->appendChild($overscript);
+		array_map([$munderover, 'setAttribute'], array_keys($attributes), array_values($attributes));
+		return $munderover;
+	}
+
+	/**
 	 * [fenced description]
 	 * @param  array  $items      [description]
 	 * @param  array  $attributes [description]
@@ -171,6 +263,35 @@ trait Math
 		array_map([$mfenced, 'appendChild'], $items);
 		array_map([$mfenced, 'setAttribute'], array_keys($attributes), array_values($attributes));
 		return $mfenced;
+	}
+
+	/**
+	 * [enclose description]
+	 * @param  string $notation   [description]
+	 * @param  array  $items      [description]
+	 * @param  array  $attributes [description]
+	 * @return [type]             [description]
+	 * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/menclose
+	 */
+	final public function enclose($notation = 'longdiv', array $items, array $attributes = array())
+	{
+		$attributes['notation'] = $notation;
+		$menclose = $this->createElement('menclose');
+		array_map([$menclose, 'appendChild'], $items);
+		array_map([$menclose, 'setAttribute'], array_keys($attributes), array_values($attributes));
+		return $menclose;
+	}
+
+	/**
+	 * [divide description]
+	 * @param  DOMElement $num        [description]
+	 * @param  DOMElement $by         [description]
+	 * @param  array      $attributes [description]
+	 * @return [type]                 [description]
+	 */
+	final public function divide(\DOMElement $num, \DOMElement $by, array $attributes = array())
+	{
+		return $this->row([$by, $this->enclose('longdiv', [$num], $attributes)]);
 	}
 
 	/**
@@ -215,5 +336,124 @@ trait Math
 		$mglyph = $this->createElement('mglyph');
 		array_map([$mglyph, 'setAttribute'], array_keys($attributes), array_values($attributes));
 		return $mglyph;
+	}
+
+	/**
+	 * [table description]
+	 * @param  array  $atributes [description]
+	 * @return [type]            [description]
+	 * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/mtable
+	 */
+	final public function table(array $attributes = array())
+	{
+		$mtable = $this->createElement('mtable');
+		array_map([$mtable, 'setAttribute'], array_keys($attributes), array_values($attributes));
+		return $mtable;
+	}
+
+	/**
+	 * [tableRow description]
+	 * @param  array  $items      [description]
+	 * @param  array  $attributes [description]
+	 * @return [type]             [description]
+	 * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/mtr
+	 */
+	final public function tableRow(array $items, array $attributes = array())
+	{
+		$mtr = $this->createElement('mtr');
+		array_map([$mtr, 'appendChild'], $items);
+		array_map([$mtr, 'setAttribute'], array_keys($attributes), array_values($attributes));
+		return $mtr;
+	}
+
+	/**
+	 * [tableCell description]
+	 * @param  array  $items      [description]
+	 * @param  array  $attributes [description]
+	 * @return [type]             [description]
+	 * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/mtd
+	 */
+	final public function tableCell(array $items, array $attributes = array())
+	{
+		$mtd = $this->createElement('mtd');
+		array_map([$mtd, 'appendChild'], $items);
+		array_map([$mtd, 'setAttribute'], array_keys($attributes), array_values($attributes));
+		return $mtd;
+	}
+
+	/**
+	 * [row description]
+	 * @param  array  $items      [description]
+	 * @param  array  $attributes [description]
+	 * @return [type]             [description]
+	 * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/mrow
+	 */
+	final public function row(array $items, array $attributes = array())
+	{
+		$mrow = $this->createElement('mrow');
+		array_map([$mrow, 'appendChild'], $items);
+		array_map([$mrow, 'setAttribute'], array_keys($attributes), array_values($attributes));
+		return $mrow;
+	}
+
+	/**
+	 * [integral description]
+	 * @param  mixed   $from [description]
+	 * @param  [type]  $to   [description]
+	 * @return [type]        [description]
+	 */
+	final public function integral($from = 0, $to = \shgysk8zer0\DOM\MathML::INFINITY)
+	{
+		return $this->overUnder(
+			$this->operator(\shgysk8zer0\DOM\MathML::INTEGRAL),
+			$this->identifier($from),
+			$this->identifier($to)
+		);
+	}
+
+	/**
+	 * [naturalLog description]
+	 * @param  [type] $num [description]
+	 * @return [type]      [description]
+	 */
+	final public function naturalLog($num)
+	{
+		return $this->row([
+			$this->operator('ln'),
+			$this->fenced([$this->number(-1)])
+		]);
+	}
+
+	/**
+	 * [toggle description]
+	 * @param  array  $items      [description]
+	 * @param  array  $attributes [description]
+	 * @return [type]             [description]
+	 */
+	final public function toggle(array $items, array $attributes = array())
+	{
+		return $this->action('toggle', $items, $attributes);
+	}
+
+	/**
+	 * [statusLine description]
+	 * @param  [type] $message    [description]
+	 * @param  array  $attributes [description]
+	 * @return [type]             [description]
+	 */
+	final public function statusLine($message, array $attributes = array())
+	{
+		return $this->action('statusline', [$this->text($message)], $attributes);
+	}
+
+	/**
+	 * [toolTip description]
+	 * @param  [type] $message    [description]
+	 * @param  array  $attributes [description]
+	 * @return [type]             [description]
+	 */
+	final public function toolTip($message, array $attributes = array())
+	{
+		return $this->action('tooltip', [$this->text($message)], $attributes);
 	}
 }
