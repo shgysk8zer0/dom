@@ -59,4 +59,13 @@ class SVG extends \DOMDocument implements API\Interfaces\Magic_Methods, API\Inte
 			array_values($attrs)
 		);
 	}
+
+	/**
+	 * Converts the SVG to a data: URI
+	 * @return string SVG element as a base64 encoded data URI
+	 */
+	final public function asDataURI()
+	{
+		return 'data:' . $this::CONTENT_TYPE . ',' . rawurlencode($this);
+	}
 }
