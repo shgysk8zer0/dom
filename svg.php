@@ -49,8 +49,7 @@ class SVG extends \DOMDocument implements API\Interfaces\Magic_Methods, API\Inte
 	{
 		parent::__construct('1.0', $charset);
 		$this->registerNodeClass('\\DOMElement', '\\' . __NAMESPACE__ . '\\' . 'XMLElement');
-		$this->appendChild($this->createElement('svg'));
-		$attrs['xmlns'] = self::XMLNS;
+		$this->appendChild($this->createElementNS(self::XMLNS,'svg'));
 		$attrs['version'] = self::VERSION;
 
 		array_map(
@@ -58,5 +57,19 @@ class SVG extends \DOMDocument implements API\Interfaces\Magic_Methods, API\Inte
 			array_keys($attrs),
 			array_values($attrs)
 		);
+	}
+
+	/**
+	 * Load an SVG from an existing file
+	 *
+	 * @param  string $file  A new SVG instance
+	 * @param  array  $attrs Array of attributes to set
+	 * @return DOMDocument   A new SVG instance
+	 */
+	final public static function loadSVG($file, Array $attrs = array())
+	{
+		$svg = new self($attrs);
+		$svg->load($file);
+		return $svg;
 	}
 }
