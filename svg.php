@@ -72,4 +72,15 @@ class SVG extends \DOMDocument implements API\Interfaces\Magic_Methods, API\Inte
 		$svg->load($file);
 		return $svg;
 	}
+
+	/**
+	 * Saves SVG to file as $filename
+	 *
+	 * @param  string $filename Name to save as
+	 * @return int              Number of bytes written or false on failure
+	 */
+	final public function save($filename)
+	{
+		return file_put_contents($filename, "$this");
+	}
 }
