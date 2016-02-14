@@ -30,10 +30,15 @@ use \shgysk8zer0\Core_API as API;
  */
 class SVGSprite extends SVG implements API\Interfaces\Magic_Methods, API\Interfaces\String
 {
+	/**
+	 * Creates a new instance of SVGSprite
+	 *
+	 * @param Array $svgs Array of files to create from
+	 */
 	final public function __construct(Array $svgs)
 	{
 		parent::__construct();
-		array_map([$this, '_createSymbol'], $svgs);
+		array_map([$this, '_createSymbol'], array_values($svgs), array_keys($svgs));
 	}
 
 	/**
@@ -42,7 +47,7 @@ class SVGSprite extends SVG implements API\Interfaces\Magic_Methods, API\Interfa
 	 * @param  string $file The name of the file to import from
 	 * @return void
 	 */
-	final private function _createSymbol($file)
+	final private function _createSymbol($file, $id)
 	{
 		if (! is_string($file)) {
 			throw new InvalidArgumentException(sprintf(
@@ -57,8 +62,7 @@ class SVGSprite extends SVG implements API\Interfaces\Magic_Methods, API\Interfa
 		// Create a new SVG from the file
 		$svg = parent::loadSVG($file);
 		$symbol = $this->documentElement->appendChild($this->createElement('symbol'));
-		$symbol->id = basename($file, '.svg');
-
+		$symbol->id = is_string($id) ? $id : basename($file, '.svg');
 		// Attempt to set `viewBox` from either SVG's viewBox or dimensions
 		if (isset($svg->documentElement->viewBox)) {
 			$symbol->viewBox = $svg->documentElement->viewBox;
