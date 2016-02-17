@@ -29,7 +29,7 @@ use \shgysk8zer0\Core_API as API;
  */
 class HTML extends Abstracts\HTMLDocument implements Interfaces\DOMDocument, Interfaces\HTMLDocument
 {
-use API\Traits\GetIstance;
+use API\Traits\GetInstance;
 	public $head;
 	public $body;
 	public function __construct($doctype = self::DEFAULT_DOCTYPE, $encoding = self::ENCODING)
