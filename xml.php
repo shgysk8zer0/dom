@@ -28,6 +28,7 @@ class XML extends \DOMDocument implements Interfaces\DOMDocument, Interfaces\XML
 	use Traits\XMLString;
 	use Traits\XPath;
 	use Traits\XSL;
+use \shgysk8zer0\Core_API\Traits\GetIstance;
 
 	public function __construct(
 		$root_el,
