@@ -67,7 +67,7 @@ class SVGSprite extends SVG implements API\Interfaces\Magic_Methods, API\Interfa
 		if (isset($svg->documentElement->viewBox)) {
 			$symbol->viewBox = $svg->documentElement->viewBox;
 		} else if (isset($svg->documentElement->width, $svg->documentElement->height)) {
-			$symbol->viewBox = "0 0 {$svg->documentElement->width} {$svg->documentElement->width}";
+			$symbol->viewBox = "0 0 {$svg->documentElement->width} {$svg->documentElement->height}";
 		}
 
 		// Import and append SVG's childNodes
