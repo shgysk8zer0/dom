@@ -56,6 +56,7 @@ class HTML extends Abstracts\HTMLDocument implements Interfaces\DOMDocument, Int
 	{
 		$this->_createDocument($doctype, $encoding);
 		$this->registerNodeClass('\\DOMElement', '\\' . __NAMESPACE__ . '\\' . 'HTMLElement');
+		$this->registerNodeClass('\\DOMDocumentFragment', '\\' . __NAMESPACE__ . '\\' . 'Fragment');
 		$this->appendChild($this->createElement('html'));
 		$this->head = $this->createElement('head');
 		$this->body = $this->createElement('body');

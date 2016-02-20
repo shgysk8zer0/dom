@@ -47,6 +47,7 @@ class XML extends \DOMDocument implements Interfaces\DOMDocument, Interfaces\XML
 	{
 		parent::__construct($version, $encoding);
 		$this->registerNodeClass('\\DOMElement', '\\' . __NAMESPACE__ . '\\' . 'XMLElement');
+		$this->registerNodeClass('\\DOMDocumentFragment', '\\' . __NAMESPACE__ . '\\' . 'Fragment');
 		if (filter_var($ns_URI, FILTER_VALIDATE_URL)) {
 			$this->appendChild($this->createElementNS($ns_URI, $root_el));
 		} else {
