@@ -40,9 +40,5 @@ Interfaces\DOMDocument, Interfaces\HTMLDocument
 	use Traits\XPath;
 	use API\Traits\Magic\Call_Setter;
 	use Traits\InvokeImporter;
-
-	// public function __invoke($tag, $content = null, array $attributes = array())
-	// {
-	// 	return $this->append($tag, $content, $attributes);
-	// }
+	use Traits\AutoAppend;
 }
