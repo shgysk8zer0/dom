@@ -45,32 +45,8 @@ trait InvokeImporter
 	 */
 	final public function __invoke()
 	{
-		$imported = array_map([$this, '__importFromFile'], func_get_args());
-		return array_map([$this, '__appendItem'], $imported);
-	}
-
-	/**
-	 * Append items, possibly recursively, by type
-	 *
-	 * @param  mixed  $item \DOMNode or a collection of \DOMNodes
-	 * @return mixed        Whatever was given as input, imported and appended
-	 */
-	final private function __appendItem($item)
-	{
-		if ($item instanceof \DOMNode) {
-			if (! $item->ownerDocument === $this->ownerDocument) {
-				$this->importNode($item, true);
-			}
-			return $this->appendChild($item);
-		} elseif ($item instanceof \DOMNodeList) {
-			$items = array();
-			foreach($item as $node) {
-				array_push($items, $this->appendChild($node));
-			}
-			return $items;
-		} else if (is_array($item)) {
-			return array_map([$this, __FUNCTION__], $item);
-		}
+		$imported = array_map([$this, '_importFromFile'], func_get_args());
+		return array_map([$this, '_appendItem'], $imported);
 	}
 
 	/**
@@ -79,7 +55,7 @@ trait InvokeImporter
 	 * @param  string $script The filename or path
 	 * @return mixed         Whatever is returned from the PHP script
 	 */
-	final private function __importFromFile($script)
+	final private function _importFromFile($script)
 	{
 		$ext = pathinfo($script, PATHINFO_EXTENSION);
 		if (empty($ext)) {
@@ -87,4 +63,6 @@ trait InvokeImporter
 		}
 		return require static::$import_path . DIRECTORY_SEPARATOR . $script;
 	}
+
+	abstract function _appendItem($item);
 }
