@@ -28,8 +28,16 @@ class XML extends \DOMDocument implements Interfaces\DOMDocument, Interfaces\XML
 	use Traits\XMLString;
 	use Traits\XPath;
 	use Traits\XSL;
-use \shgysk8zer0\Core_API\Traits\GetInstance;
+	use \shgysk8zer0\Core_API\Traits\GetInstance;
 
+	/**
+	 * Creates a new instance of an XML Document
+	 *
+	 * @param string $root_el  the `tagName` for `:root`
+	 * @param string $ns_URI   Namespacce  URI
+	 * @param string $version  XML version
+	 * @param string $encoding Encodiing of the document
+	 */
 	public function __construct(
 		$root_el,
 		$ns_URI         = null,

@@ -29,9 +29,29 @@ use \shgysk8zer0\Core_API as API;
  */
 class HTML extends Abstracts\HTMLDocument implements Interfaces\DOMDocument, Interfaces\HTMLDocument
 {
-use API\Traits\GetInstance;
+	use API\Traits\GetInstance;
+	/**
+	 * The head element
+	 *
+	 * @var HTMLElement
+	 */
 	public $head;
+
+	/**
+	 * The body element
+	 *
+	 * @var HTMLElement
+	 */
 	public $body;
+
+	public static $echoOnExit = false;
+
+	/**
+	 * Creates a new instance of HTML
+	 *
+	 * @param string $doctype  <!DOCTYPE $doctype>
+	 * @param string $encoding <meta charset="$encoding">
+	 */
 	public function __construct($doctype = self::DEFAULT_DOCTYPE, $encoding = self::ENCODING)
 	{
 		$this->_createDocument($doctype, $encoding);
@@ -41,6 +61,12 @@ use API\Traits\GetInstance;
 		$this->body = $this->createElement('body');
 		$this->documentElement->appendChild($this->head);
 		$this->documentElement->appendChild($this->body);
-		$this->head->appendChild($this->createElement('meta'))->charset(strtolower($encoding));
+		$this->head->append('meta', null, ['charset' => $encoding]);
+	}
+
+	public function __destruct() {
+		if (static::$echoOnExit) {
+			echo $this;
+		}
 	}
 }
