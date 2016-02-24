@@ -41,4 +41,15 @@ Interfaces\DOMDocument, Interfaces\HTMLDocument
 	use API\Traits\Magic\Call_Setter;
 	use Traits\InvokeImporter;
 	use Traits\AutoAppend;
+
+	/**
+	 * Import and append a node
+	 *
+	 * @param  DOMNode $node Node to append
+	 * @return DOMNode        The appended node
+	 */
+	public function import(\DOMNode $node)
+	{
+		return $this->appendChild($this->ownerDocument->importNode($node, true));
+	}
 }
