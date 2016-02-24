@@ -40,7 +40,7 @@ trait XMLString
 		if ($this instanceof \DOMDocument) {
 			return $this->saveXML();
 		} else {
-			return $this->ownerDocumennt->saveXML($this);
+			return $this->ownerDocument->saveXML($this);
 		}
 	}
 }
