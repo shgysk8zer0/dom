@@ -38,6 +38,7 @@ class SVG extends \DOMDocument implements API\Interfaces\Magic_Methods, API\Inte
 	const VERSION = 1.1;
 	const CHARSET = 'UTF-8';
 	const CONTENT_TYPE = 'image/svg+xml';
+	const USE_NS = 'http://www.w3.org/1999/xlink';
 
 	/**
 	 * Create a new DOMDocument with SVG as the documentElement
@@ -57,6 +58,17 @@ class SVG extends \DOMDocument implements API\Interfaces\Magic_Methods, API\Inte
 			array_keys($attrs),
 			array_values($attrs)
 		);
+	}
+
+	public static function useIcon($id, Array $attrs = array(), $path = "images/icons.svg")
+	{
+		$url = new \shgysk8zer0\Core\URL($path);
+		$url->fragment = $id;
+		$attrs['xmlns:xlink'] = self::USE_NS;
+		$svg = new self($attrs);
+		$use = $svg->documentElement->appendChild($svg->createElement('use'));
+		$use->{'xlink:href'} = $url;
+		return $svg->documentElement;
 	}
 
 	/**
