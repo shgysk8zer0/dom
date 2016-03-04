@@ -56,7 +56,7 @@ class SVGSprite extends SVG implements API\Interfaces\Magic_Methods, API\Interfa
 				gettype($file)
 			));
 		} else if (! file_exists($file)) {
-			throw new Exception(sprintf('%s not found', $file), 1);
+			throw new \Exception(sprintf('%s not found', $file), 1);
 		}
 
 		// Create a new SVG from the file
