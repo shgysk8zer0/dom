@@ -50,7 +50,7 @@ class SVGSprite extends SVG implements API\Interfaces\Magic_Methods, API\Interfa
 	final private function _createSymbol($file, $id)
 	{
 		if (! is_string($file)) {
-			throw new InvalidArgumentException(sprintf(
+			throw new \InvalidArgumentException(sprintf(
 				'%s expects a string but got a %s',
 				__MEHTOD__,
 				gettype($file)
