@@ -39,6 +39,8 @@ trait AutoAppend
 				$this->ownerDocument->importNode($item, true);
 			}
 			return $this->appendChild($item);
+		} elseif (is_callable($item)) {
+			return call_user_func([$this, __FUNCTION__], call_user_func($item));
 		} elseif (is_string($item)) {
 			return $this->appendChild($this->ownerDocument->createTextNode($item));
 		} elseif ($item instanceof \DOMNodeList) {
