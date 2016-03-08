@@ -48,8 +48,14 @@ Interfaces\DOMDocument, Interfaces\HTMLDocument
 	 * @param  DOMNode $node Node to append
 	 * @return DOMNode        The appended node
 	 */
-	public function import(\DOMNode $node)
+	public function import($node)
 	{
-		return $this->appendChild($this->ownerDocument->importNode($node, true));
+		if ($node instanceof \DOMNode) {
+			return $this->appendChild($this->ownerDocument->importNode($node, true));
+		} elseif (is_callable($node)) {
+			return call_user_func([$this, __FUNCTION__], $node);
+		} elseif (is_array($node)) {
+			return array_map([$this, __FUNCTION__], $node);
+		}
 	}
 }
