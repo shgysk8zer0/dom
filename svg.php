@@ -62,7 +62,11 @@ class SVG extends \DOMDocument implements API\Interfaces\Magic_Methods, API\Inte
 
 	public static function useIcon($id, Array $attrs = array(), $path = "images/icons.svg")
 	{
-		$url = new \shgysk8zer0\Core\URL($path);
+		static $url = null;
+		if (is_null($url)) {
+			$url = clone \shgysk8zer0\Core\URL::getInstance();
+		}
+		$url->path = $path;
 		$url->fragment = $id;
 		$attrs['xmlns:xlink'] = self::USE_NS;
 		$svg = new self($attrs);
