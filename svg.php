@@ -65,6 +65,7 @@ class SVG extends \DOMDocument implements API\Interfaces\Magic_Methods, API\Inte
 		static $url = null;
 		if (is_null($url)) {
 			$url = clone \shgysk8zer0\Core\URL::getInstance();
+			unset($url->query, $url->user, $url->pass, $url->fragment);
 		}
 		$url->path = $path;
 		$url->fragment = $id;
