@@ -28,7 +28,7 @@ use \shgysk8zer0\Core_API as API;
  * Class extending DOMElement and making use of several traits
  */
 class HTMLElement extends \DOMElement
-implements API\Interfaces\Magic_Methods, API\Interfaces\String,
+implements API\Interfaces\Magic_Methods, API\Interfaces\toString,
 Interfaces\DOMDocument, Interfaces\HTMLDocument
 {
 	use Traits\DOMDocument;

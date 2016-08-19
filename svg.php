@@ -28,7 +28,7 @@ use \shgysk8zer0\Core_API as API;
 /**
  * Class extending \DOMDocument for creating SVGs.
  */
-class SVG extends \DOMDocument implements API\Interfaces\Magic_Methods, API\Interfaces\String
+class SVG extends \DOMDocument implements API\Interfaces\Magic_Methods, API\Interfaces\toString
 {
 	use API\Traits\Magic\Call_Setter;
 	use Traits\DocumentElementAttributes;

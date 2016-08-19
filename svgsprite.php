@@ -28,7 +28,7 @@ use \shgysk8zer0\Core_API as API;
 /**
  * Class extending SVG for creating SVG Sprites.
  */
-class SVGSprite extends SVG implements API\Interfaces\Magic_Methods, API\Interfaces\String
+class SVGSprite extends SVG implements API\Interfaces\Magic_Methods, API\Interfaces\toString
 {
 	/**
 	 * Creates a new instance of SVGSprite

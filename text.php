@@ -26,7 +26,7 @@ namespace shgysk8zer0\DOM;
 /**
  * Class adding new functionality to \DOMText
  */
-final class Text extends \DOMText implements \shgysk8zer0\Core_API\Interfaces\String
+final class Text extends \DOMText implements \shgysk8zer0\Core_API\Interfaces\toString
 {
 	/**
 	 * Returns text content of DOMText
