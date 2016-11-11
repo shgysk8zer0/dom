@@ -39,7 +39,7 @@ trait HTMLParser
 	{
 		$dom = new \DOMDocument('1.0', 'UTF-8');
 		$dom->loadHTML($html, $options);
-		return $dom->documentElement->getElementsByTagName('body')->item(0)->childNodes;
+		return $dom->getElementsByTagName('body')->item(0)->childNodes;
 	}
 
 	/**
