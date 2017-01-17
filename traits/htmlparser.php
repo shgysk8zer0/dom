@@ -31,15 +31,18 @@ trait HTMLParser
 	 *  These will need to be imported into the current document
 	 *
 	 * @param  string $html    HTML to import into a new \DOMDocument
-	 * @param  int    $options [description]
+	 * @param  int    $options Libxml paramaters
 	 * @return \DOMNodeList    Node List containing the parsed DOM nodes
 	 * @see https://secure.php.net/manual/en/domdocument.loadhtml.php
 	 */
-	final public function parseHTML($html, $options = 0)
+	final public function parseHTML($html, $options = LIBXML_NOWARNING)
 	{
+		libxml_use_internal_errors(true);
 		$dom = new \DOMDocument('1.0', 'UTF-8');
-		$dom->loadHTML($html, $options);
-		return $dom->getElementsByTagName('body')->item(0)->childNodes;
+		$dom->preserveWhiteSpace = false;
+		@$dom->loadHTML($html, $options);
+		libxml_clear_errors();
+		return $dom->documentElement->firstChild->childNodes;
 	}
 
 	/**
@@ -50,8 +53,31 @@ trait HTMLParser
 	 */
 	final public function importHTML($html)
 	{
-		foreach ($this->parseHTML($html) as $node) {
-			$this->appendChild($this->ownerDocument->importNode($node, true));
+		$nodes = $this->parseHTML($html);
+		$length = $nodes->length;
+		for ($i = 0; $i < $length; $i++) {
+			$this->appendChild($this->ownerDocument->importNode($nodes->item($i), true));
+		}
+		return $this;
+	}
+	/**
+	 *  Load HTML from a file and import the nodes
+	 * @param  string $filename    HTML file to import
+	 * @param  int    $options     Libxml paramaters
+	 * @return self
+	 * @see https://secure.php.net/manual/en/domdocument.loadhtmlfile.php
+	 */
+	final public function importHTMLFile($filename, $options = LIBXML_NOWARNING)
+	{
+		libxml_use_internal_errors(true);
+		$dom = new \DOMDocument('1.0', 'UTF-8');
+		$dom->preserveWhiteSpace = false;
+		@$dom->loadHTMLFile($filename, $options);
+		libxml_clear_errors();
+		$nodes = $dom->documentElement->firstChild->childNodes;
+		$length = $nodes->length;
+		for ($i = 0; $i < $length; $i++) {
+			$this->appendChild($this->ownerDocument->importNode($nodes->item($i), true));
 		}
 		return $this;
 	}
