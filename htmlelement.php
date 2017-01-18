@@ -41,6 +41,7 @@ Interfaces\DOMDocument, Interfaces\HTMLDocument
 	use API\Traits\Magic\Call_Setter;
 	use Traits\InvokeImporter;
 	use Traits\AutoAppend;
+	use Traits\Conditional;
 
 	/**
 	 * Import and append a node
