@@ -5,7 +5,7 @@
  * @subpackage Traits
  * @version 0.0.1
  * @since 0.0.1
- * @copyright 2015, Chris Zuber
+ * @copyright 2017, Chris Zuber
  * @license https://www.gnu.org/licenses/gpl-2.0.html GNU General Public License, version 2 (GPL-2.0)
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Library General Public
@@ -43,7 +43,7 @@ trait XPath
 				return @$xpath->query($selector);
 			} elseif($this instanceof \DOMElement) {
 				$xpath = new \DOMXPath($this->ownerDocument);
-				return @$xpath->query($selecor, $this);
+				return @$xpath->query($selector, $this);
 			}
 		} catch (\Exception $e) {
 			return new \DOMNodeList;
