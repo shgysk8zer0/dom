@@ -51,9 +51,9 @@ trait Conditional
 	public function ifIE($content, $version = null, $compare = null)
 	{
 		if (is_int($version)) {
-			if (is_string($compare)) {
-				if (in_array($compare, array_keys($this->_is_subs))) {
-					$compare = $this->_is_subs[$compare];
+			if (is_string($compare) and $compare !== '') {
+				if (in_array($compare, array_keys($this->_ie_subs))) {
+					$compare = $this->_ie_subs[$compare];
 				} elseif (!in_array($compare, $this->_ie_subs)) {
 					trigger_error('Invalid IE conditional operator');
 				}
